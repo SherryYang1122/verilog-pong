@@ -1,2 +1,2 @@
-verlog-pong-game
+verilog-pong-game
 ================
