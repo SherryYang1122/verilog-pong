@@ -13,22 +13,32 @@ module top(
     over    = 2'b10;
 
     reg [1:0] state, state_next;
-    wire graph_on, hit, miss;
+    wire [9:0] pixel_x, pixel_y;
+    wire video_on, pixel_tick, graph_on, hit, miss;
     wire [2:0] graph_rgb;
-    reg [2:0] rgb, rgb_next;
+    reg [2:0] rgb_now, rgb_next;
     reg [1:0] ball, ball_next;
+    reg gra_still, timer_start;
 
     vga_sync vsync_unit
-        (.clk(clk), .reset(reset), .hsync(hsync), .vsync(vsync),
+        (.clk(clk), .hsync(hsync), .vsync(vsync),
         .video_on(video_on), .p_tick(pixel_tick),
         .pixel_x(pixel_x), .pixel_y(pixel_y));
 
     pong_graph graph_unit
-      (.clk(clk), .reset(reset), .btn1(btn1), .btn2(btn2), .ai_switch(ai_switch),
+      (.clk(clk), .reset(reset), .btn1(btn1), .btn2(btn2),
        .pix_x(pixel_x), .pix_y(pixel_y),
        .gra_still(gra_still), .hit(hit), .miss(miss),
        .graph_on(graph_on), .graph_rgb(graph_rgb));
-         
+
+    always @(posedge clk)
+    begin
+        state_reg <= state_next;
+        ball_reg <= ball_next;
+        if (pixel_tick)
+            rgb_reg <= rgb_next;
+    end
+
     always @*
     begin
         state_next = state;
@@ -46,11 +56,24 @@ module top(
                 begin
                     
                 end
-            over
+            over:
                 begin
                     state_next = new;
                 end
         endcase
     end
+
+    always @*
+    begin
+        if (~video_on)
+            rgb_next = "000"; // blank the edge/retrace
+        else
+            if (graph_on)  // display graph
+                rgb_next = graph_rgb;
+            else
+                rgb_next = 3'b110; // yellow background
+    end
+
+    assign rgb = rgb_now;
 
 endmodule

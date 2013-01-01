@@ -14,14 +14,14 @@ module timer_1ms(
 	always @(posedge clk)
     begin
 		if (cnt >= 25000)
-        begin
-			cnt <= 0;
-			clk_1ms <= ~clk_1ms;
-		end
+            begin
+                cnt <= 0;
+                clk_1ms <= ~clk_1ms;
+            end
 		else
-        begin
-			cnt <= cnt+1;
-		end
+            begin
+                cnt <= cnt+1;
+            end
     end
 
 endmodule
