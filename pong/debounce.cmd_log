@@ -1,2 +1,0 @@
-xst -intstyle ise -ifn "C:/Users/Yan/Documents/GitHub/verilog-pong-game/pong/debounce.xst" -ofn "C:/Users/Yan/Documents/GitHub/verilog-pong-game/pong/debounce.syr" 
-ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pong_spartan3.ucf -p xc3s200-ft256-4 debounce.ngc debounce.ngd  

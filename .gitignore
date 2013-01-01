@@ -1,1 +1,9 @@
-*.tmp
+*.bld
+*.cmd_log
+*.lso
+*.prj
+*.syr
+*.xst
+top_summary.html
+*.xrpt
+webtalk_pn.xmlml
