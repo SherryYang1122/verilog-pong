@@ -39,16 +39,16 @@ module top(
                     if ((btn1 != 2'b00) || (btn2 != 2'b00))    // any button pressed the game start
                     begin
                         state_next = play;
-                  ball_next = ball_reg - 1;
-               end
+                        ball_next = ball_reg - 1;
+                    end
                 end
             play:
                 begin
-                
+                    
                 end
             over
                 begin
-                    state_next = new;s
+                    state_next = new;
                 end
         endcase
     end
