@@ -1,0 +1,2 @@
+verilog work "timer_1ms.v"
+verilog work "debounce.v"

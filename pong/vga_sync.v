@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-module graph_unit(
+module vga_sync(
     );
 
 

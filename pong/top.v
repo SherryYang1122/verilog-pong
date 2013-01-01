@@ -23,7 +23,7 @@ module top(
         .video_on(video_on), .p_tick(pixel_tick),
         .pixel_x(pixel_x), .pixel_y(pixel_y));
 
-   pong_graph graph_unit
+    pong_graph graph_unit
       (.clk(clk), .reset(reset), .btn1(btn1), .btn2(btn2), .ai_switch(ai_switch),
        .pix_x(pixel_x), .pix_y(pixel_y),
        .gra_still(gra_still), .hit(hit), .miss(miss),
