@@ -5,7 +5,7 @@ module pong_graph(
 		input wire [1:0] btn2,
 		input wire [9:0] pix_x, pix_y,
 		input wire graph_still,
-		output reg miss,
+		output reg miss, hit_left, hit_right,
 		output wire graph_on,
 		output reg [2:0] graph_rgb
 	);
@@ -132,6 +132,8 @@ module pong_graph(
 
 	always @*
 	begin
+		hit_left = 1'b0;
+		hit_right = 1'b0;
 		miss = 1'b0;
 		x_delta_next = x_delta;
 		y_delta_next = y_delta;
@@ -147,11 +149,13 @@ module pong_graph(
 		else if (BAR_LEFT_X <= ball_left && BAR_LEFT_X + BAR_WIDTH >= ball_left
 				&& bar_left_top <= ball_top && bar_left_bottom >= ball_bottom)
 			begin
+				hit_left = 1'b1;
 				x_delta_next = -x_delta_next;	// ?
 			end
 		else if (BAR_RIGHT_X >= ball_right && BAR_RIGHT_X - BAR_WIDTH <= ball_right
 				&& bar_right_top <= ball_top && bar_right_bottom >= ball_bottom)
 			begin
+				hit_right = 1'b1;
 				x_delta_next = -x_delta_next;
 			end
 		else if (ball_right >= MAX_X - 10 || ball_right <= 10)
