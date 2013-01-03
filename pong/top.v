@@ -17,13 +17,13 @@ module top(
     wire video_on, pixel_tick, graph_on, hit, miss;
     wire [2:0] graph_rgb;
     reg [2:0] rgb_now, rgb_next;
-    reg gra_still, timer_start;
+    reg graph_still, timer_start;
 	wire [1:0] btn1_out, btn2_out;
 	
 	initial begin
 		state = 2'b00;
 		rgb_now = 0;
-		gra_still = 1'b1;
+		graph_still = 1'b1;
 	end
 
 	debounce p0(clk, btn1[0], btn1_out[0]);
@@ -39,7 +39,7 @@ module top(
     pong_graph graph_unit
       (.clk(clk), .reset(reset), .btn1(btn1_out), .btn2(btn2_out),
        .pix_x(pixel_x), .pix_y(pixel_y),
-       .gra_still(gra_still), .hit(hit), .miss(miss),
+       .graph_still(graph_still), .hit(hit), .miss(miss),
        .graph_on(graph_on), .graph_rgb(graph_rgb));
 
     always @(posedge clk)
@@ -59,7 +59,7 @@ module top(
 
     always @*
     begin
-		gra_still = 1'b1;
+		graph_still = 1'b1;
         state_next = state;
         case (state)
             new:
@@ -72,7 +72,7 @@ module top(
                 end
             play:
                 begin
-					gra_still = 1'b0;
+					graph_still = 1'b0;
                     if (miss)
 					begin
 						state_next = over;
