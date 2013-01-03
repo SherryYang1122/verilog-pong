@@ -8,7 +8,19 @@
 <!-- Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1677" ><arg fmt="%s" index="1">Analyzing Verilog file \&quot;C:/Users/Yan/Documents/GitHub/verilog-pong-game/pong/pong_graph.v\&quot; into library work</arg>
+<msg type="info" file="ProjectMgmt" num="1677" ><arg fmt="%s" index="1">Analyzing Verilog file \&quot;C:/Users/lighnt/Documents/GitHub/verilog-pong-game/pong/debounce.v\&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1677" ><arg fmt="%s" index="1">Analyzing Verilog file \&quot;C:/Users/lighnt/Documents/GitHub/verilog-pong-game/pong/pong_graph.v\&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1677" ><arg fmt="%s" index="1">Analyzing Verilog file \&quot;C:/Users/lighnt/Documents/GitHub/verilog-pong-game/pong/timer_1ms.v\&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1677" ><arg fmt="%s" index="1">Analyzing Verilog file \&quot;C:/Users/lighnt/Documents/GitHub/verilog-pong-game/pong/top.v\&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1677" ><arg fmt="%s" index="1">Analyzing Verilog file \&quot;C:/Users/lighnt/Documents/GitHub/verilog-pong-game/pong/vga_sync.v\&quot; into library work</arg>
 </msg>
 
 </messages>
