@@ -75,16 +75,16 @@ module pong_graph(
 					 && (bar_left_top <= pix_y) && (pix_y <= bar_left_bottom));
 
 	always @*
-	case (ball_row)
-		3'h0: ball_data = 8'b00111100;	 //   ****
-		3'h1: ball_data = 8'b01111110;	 //  ******
-		3'h2: ball_data = 8'b11111111;	 // ********
-		3'h3: ball_data = 8'b11111111;	 // ********
-		3'h4: ball_data = 8'b11111111;	 // ********
-		3'h5: ball_data = 8'b11111111;	 // ********
-		3'h6: ball_data = 8'b01111110;	 //  ******
-		3'h7: ball_data = 8'b00111100;	 //   ****
-	endcase
+		case (ball_row)
+			3'h0: ball_data = 8'b00111100;	 //   ****
+			3'h1: ball_data = 8'b01111110;	 //  ******
+			3'h2: ball_data = 8'b11111111;	 // ********
+			3'h3: ball_data = 8'b11111111;	 // ********
+			3'h4: ball_data = 8'b11111111;	 // ********
+			3'h5: ball_data = 8'b11111111;	 // ********
+			3'h6: ball_data = 8'b01111110;	 //  ******
+			3'h7: ball_data = 8'b00111100;	 //   ****
+		endcase
 	
 	always @(posedge clk, posedge reset)
 	begin
