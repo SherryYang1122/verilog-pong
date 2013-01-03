@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 module top(
-        input wire clk,
+        input wire clk, reset,
         input wire [1:0] btn1,
         input wire [1:0] btn2,
         output wire hsync, vsync,
@@ -22,45 +22,61 @@ module top(
 	
 	initial begin
 		state = 2'b00;
+		rgb_now = 0;
+		gra_still = 1'b1;
 	end
-	
+
 	debounce p0(clk, btn1[0], btn1_out[0]);
 	debounce p1(clk, btn1[1], btn1_out[1]);
 	debounce p2(clk, btn2[0], btn2_out[0]);
 	debounce p3(clk, btn2[1], btn2_out[1]);
 
     vga_sync vsync_unit
-        (.clk(clk), .hsync(hsync), .vsync(vsync),
+        (.clk(clk), .reset(reset), .hsync(hsync), .vsync(vsync),
         .video_on(video_on), .p_tick(pixel_tick),
         .pixel_x(pixel_x), .pixel_y(pixel_y));
 
     pong_graph graph_unit
-      (.clk(clk), .btn1(btn1_out), .btn2(btn2_out),
+      (.clk(clk), .reset(reset), .btn1(btn1_out), .btn2(btn2_out),
        .pix_x(pixel_x), .pix_y(pixel_y),
        .gra_still(gra_still), .hit(hit), .miss(miss),
        .graph_on(graph_on), .graph_rgb(graph_rgb));
 
     always @(posedge clk)
     begin
-        state_reg <= state_next;
-        if (pixel_tick)
-            rgb_reg <= rgb_next;
+		if (reset)
+			begin
+				state <= newgame;
+				rgb_now <= 0;
+			end
+		else
+			begin
+				state <= state_next;
+				if (pixel_tick)
+					rgb_reg <= rgb_next;
+			end
     end
 
     always @*
     begin
+		gra_still = 1'b1;
         state_next = state;
         case (state)
             new:
                 begin
-                    if ((btn1 != 2'b00) || (btn2 != 2'b00))    // any button pressed the game start
+					// any button pressed the game start
+                    if ((btn1_out != 2'b00) || (btn2_out != 2'b00))
                     begin
                         state_next = play;
                     end
                 end
             play:
                 begin
-                    
+					gra_still = 1'b0;
+                    if (miss)
+					begin
+						state_next = over;
+					end
                 end
             over:
                 begin

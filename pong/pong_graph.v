@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 module pong_graph(
-        input wire clk,
+        input wire clk, reset,
         input wire [1:0] btn1,
         input wire [1:0] btn2,
         input wire [9:0] pix_x, pix_y,
@@ -21,6 +21,11 @@ module pong_graph(
         ball_y_reg <= ball_y_next;
         x_delta_reg <= x_delta_next;
         y_delta_reg <= y_delta_next;
-    end   
+    end
+	
+	always @(posedge clk)
+	begin
+	
+	end
 
 endmodule
