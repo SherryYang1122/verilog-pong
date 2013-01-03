@@ -17,8 +17,17 @@ module top(
     wire video_on, pixel_tick, graph_on, hit, miss;
     wire [2:0] graph_rgb;
     reg [2:0] rgb_now, rgb_next;
-    reg [1:0] ball, ball_next;
     reg gra_still, timer_start;
+	wire [1:0] btn1_out, btn2_out;
+	
+	initial begin
+		state = 2'b00;
+	end
+	
+	debounce p0(clk, btn1[0], btn1_out[0]);
+	debounce p1(clk, btn1[1], btn1_out[1]);
+	debounce p2(clk, btn2[0], btn2_out[0]);
+	debounce p3(clk, btn2[1], btn2_out[1]);
 
     vga_sync vsync_unit
         (.clk(clk), .hsync(hsync), .vsync(vsync),
@@ -26,7 +35,7 @@ module top(
         .pixel_x(pixel_x), .pixel_y(pixel_y));
 
     pong_graph graph_unit
-      (.clk(clk), .reset(reset), .btn1(btn1), .btn2(btn2),
+      (.clk(clk), .btn1(btn1_out), .btn2(btn2_out),
        .pix_x(pixel_x), .pix_y(pixel_y),
        .gra_still(gra_still), .hit(hit), .miss(miss),
        .graph_on(graph_on), .graph_rgb(graph_rgb));
@@ -34,7 +43,6 @@ module top(
     always @(posedge clk)
     begin
         state_reg <= state_next;
-        ball_reg <= ball_next;
         if (pixel_tick)
             rgb_reg <= rgb_next;
     end
@@ -42,14 +50,12 @@ module top(
     always @*
     begin
         state_next = state;
-        ball_next = ball;
         case (state)
             new:
                 begin
                     if ((btn1 != 2'b00) || (btn2 != 2'b00))    // any button pressed the game start
                     begin
                         state_next = play;
-                        ball_next = ball_reg - 1;
                     end
                 end
             play:
