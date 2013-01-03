@@ -46,14 +46,14 @@ module top(
     begin
 		if (reset)
 			begin
-				state <= newgame;
+				state <= new;
 				rgb_now <= 0;
 			end
 		else
 			begin
 				state <= state_next;
 				if (pixel_tick)
-					rgb_reg <= rgb_next;
+					rgb_now <= rgb_next;
 			end
     end
 
