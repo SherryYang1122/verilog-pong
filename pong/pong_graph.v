@@ -16,6 +16,7 @@ module pong_graph(
 	// all about ball
     reg [9:0] ball_x, ball_y;
     wire [9:0] ball_x_next, ball_y_next;
+	wire [9:0] ball_right, ball_left, ball_top, ball_bottom;
     reg [9:0] x_delta, x_delta_next;
     reg [9:0] y_delta, y_delta_next;
 	
@@ -30,6 +31,9 @@ module pong_graph(
 	assign barr_rgb = 3'b101;	// purple
 	assign barl_rgb = 3'b010;	// green
 	assign ball_rgb = 3'b100;	// red
+	
+	// who konws
+	assign refr_tick = (pix_y==481) && (pix_x==0);
 	
 	always @*
 	case (ball_row)
@@ -66,11 +70,35 @@ module pong_graph(
     end
 
 	// positions
-	assign ball_x_next = ;
-	assign ball_y_next = ;
+	assign ball_right = ball_x + 4;
+	assign ball_left = ball_x + 3;
+	assign ball_top = ball_y + 3;
+	assign ball_bottom = ball_y + 4;
+	assign ball_x_next = (gra_still) ? MAX_X / 2 :
+						 (refr_tick) ? ball_x_reg + x_delta_reg :
+						 ball_x;
+	assign ball_y_next = (gra_still) ? MAX_Y / 2 :
+						 (refr_tick) ? ball_y_reg + y_delta_reg :
+                         ball_y;
 	assign ball_on = ball_on & ball_bit;
 	
 	assign ball_bit = ball_data[ball_col];
+	
+	always @*
+	begin
+		hit = 1'b0;
+		miss = 1'b0;
+		x_delta_next = x_delta;
+		y_delta_next = y_delta;
+		if (graph_still)
+			begin
+				x_delta_next = 2;
+				y_delta_next = 2;
+			end
+		else if ()
+		else if (ball_right >= MAX_X - 10 or ball_right <= 10)
+			miss = 1'b1;					// a miss
+	end
 
 	always @* 
 	begin
