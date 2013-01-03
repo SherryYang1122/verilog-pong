@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\lighnt\Documents\GitHub\verilog-pong-game\pong\top.ncd
+OUTFILE=C:\Users\lighnt\Documents\GitHub\verilog-pong-game\pong\top.bit
+FAMILY=Spartan3
+PART=xc3s200-4ft256
+WORKINGDIR=C:\Users\lighnt\Documents\GitHub\verilog-pong-game\pong
+LICENSE=WebPack
+USER_INFO=0_0_0

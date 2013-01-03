@@ -5,37 +5,5 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &quot;btn1[0]&quot;   loc=&quot;E6&quot;;&gt; [pong_spartan3.ucf(2)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">btn1[0]</arg>&quot; not found.  Please verify that:
-1. The specified design element actually exists in the original design.
-2. The specified object is spelled correctly in the constraint source file.
-</msg>
-
-<msg type="warning" file="ConstraintSystem" num="204" delta="new" >A target design object for the <arg fmt="%s" index="1">Locate</arg> constraint &apos;<arg fmt="%s" index="2">&lt;NET &quot;btn1[0]&quot;   loc=&quot;E6&quot;;&gt; [pong_spartan3.ucf(2)]</arg>&apos; could not be found and so the <arg fmt="%s" index="3">Locate</arg> constraint will be removed.
-</msg>
-
-<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &quot;btn1[1]&quot;   loc=&quot;D5&quot;;&gt; [pong_spartan3.ucf(3)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">btn1[1]</arg>&quot; not found.  Please verify that:
-1. The specified design element actually exists in the original design.
-2. The specified object is spelled correctly in the constraint source file.
-</msg>
-
-<msg type="warning" file="ConstraintSystem" num="204" delta="new" >A target design object for the <arg fmt="%s" index="1">Locate</arg> constraint &apos;<arg fmt="%s" index="2">&lt;NET &quot;btn1[1]&quot;   loc=&quot;D5&quot;;&gt; [pong_spartan3.ucf(3)]</arg>&apos; could not be found and so the <arg fmt="%s" index="3">Locate</arg> constraint will be removed.
-</msg>
-
-<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &quot;btn2[2]&quot;   loc=&quot;C5&quot;;&gt; [pong_spartan3.ucf(4)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">btn2[2]</arg>&quot; not found.  Please verify that:
-1. The specified design element actually exists in the original design.
-2. The specified object is spelled correctly in the constraint source file.
-</msg>
-
-<msg type="warning" file="ConstraintSystem" num="204" delta="new" >A target design object for the <arg fmt="%s" index="1">Locate</arg> constraint &apos;<arg fmt="%s" index="2">&lt;NET &quot;btn2[2]&quot;   loc=&quot;C5&quot;;&gt; [pong_spartan3.ucf(4)]</arg>&apos; could not be found and so the <arg fmt="%s" index="3">Locate</arg> constraint will be removed.
-</msg>
-
-<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &quot;btn2[3]&quot;   loc=&quot;D6&quot;;&gt; [pong_spartan3.ucf(5)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">btn2[3]</arg>&quot; not found.  Please verify that:
-1. The specified design element actually exists in the original design.
-2. The specified object is spelled correctly in the constraint source file.
-</msg>
-
-<msg type="warning" file="ConstraintSystem" num="204" delta="new" >A target design object for the <arg fmt="%s" index="1">Locate</arg> constraint &apos;<arg fmt="%s" index="2">&lt;NET &quot;btn2[3]&quot;   loc=&quot;D6&quot;;&gt; [pong_spartan3.ucf(5)]</arg>&apos; could not be found and so the <arg fmt="%s" index="3">Locate</arg> constraint will be removed.
-</msg>
-
 </messages>
 

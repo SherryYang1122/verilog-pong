@@ -147,7 +147,7 @@ module pong_graph(
 		else if (BAR_LEFT_X <= ball_left && BAR_LEFT_X + BAR_WIDTH >= ball_left
 				&& bar_left_top <= ball_top && bar_left_bottom >= ball_bottom)
 			begin
-				x_delta_next = -x_delta_next;
+				x_delta_next = -x_delta_next;	// ?
 			end
 		else if (BAR_RIGHT_X >= ball_right && BAR_RIGHT_X - BAR_WIDTH <= ball_right
 				&& bar_right_top <= ball_top && bar_right_bottom >= ball_bottom)
