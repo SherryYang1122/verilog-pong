@@ -18,18 +18,18 @@ module top(
     wire [2:0] graph_rgb;
     reg [2:0] rgb_now, rgb_next;
     reg graph_still, timer_start;
-	wire [1:0] btn1_out, btn2_out;
-	
-	initial begin
-		state = 2'b00;
-		rgb_now = 0;
-		graph_still = 1'b1;
-	end
+    wire [1:0] btn1_out, btn2_out;
+    
+    initial begin
+        state = 2'b00;
+        rgb_now = 0;
+        graph_still = 1'b1;
+    end
 
-	debounce p0(clk, btn1[0], btn1_out[0]);
-	debounce p1(clk, btn1[1], btn1_out[1]);
-	debounce p2(clk, btn2[0], btn2_out[0]);
-	debounce p3(clk, btn2[1], btn2_out[1]);
+    debounce p0(clk, btn1[0], btn1_out[0]);
+    debounce p1(clk, btn1[1], btn1_out[1]);
+    debounce p2(clk, btn2[0], btn2_out[0]);
+    debounce p3(clk, btn2[1], btn2_out[1]);
 
     vga_sync vsync_unit
         (.clk(clk), .reset(reset), .hsync(hsync), .vsync(vsync),
@@ -44,27 +44,27 @@ module top(
 
     always @(posedge clk)
     begin
-		if (reset)
-			begin
-				state <= new;
-				rgb_now <= 0;
-			end
-		else
-			begin
-				state <= state_next;
-				if (pixel_tick)
-					rgb_now <= rgb_next;
-			end
+        if (reset)
+            begin
+                state <= new;
+                rgb_now <= 0;
+            end
+        else
+            begin
+                state <= state_next;
+                if (pixel_tick)
+                    rgb_now <= rgb_next;
+            end
     end
 
     always @*
     begin
-		graph_still = 1'b1;
+        graph_still = 1'b1;
         state_next = state;
         case (state)
             new:
                 begin
-					// any button pressed the game start
+                    // any button pressed the game start
                     if ((btn1_out != 2'b00) || (btn2_out != 2'b00))
                     begin
                         state_next = play;
@@ -72,11 +72,11 @@ module top(
                 end
             play:
                 begin
-					graph_still = 1'b0;
+                    graph_still = 1'b0;
                     if (miss)
-					begin
-						state_next = over;
-					end
+                    begin
+                        state_next = over;
+                    end
                 end
             over:
                 begin
