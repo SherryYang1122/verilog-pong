@@ -14,7 +14,7 @@ module top(
 
 	reg [1:0] state, state_next;
 	wire [9:0] pixel_x, pixel_y;
-	wire video_on, pixel_tick, graph_on, hit, miss;
+	wire video_on, pixel_tick, graph_on, miss;
 	wire [2:0] graph_rgb;
 	reg [2:0] rgb_now, rgb_next;
 	reg graph_still, timer_start;
@@ -39,7 +39,7 @@ module top(
 	pong_graph graph_unit
 	  (.clk(clk), .reset(reset), .btn1(btn1_out), .btn2(btn2_out),
 	   .pix_x(pixel_x), .pix_y(pixel_y),
-	   .graph_still(graph_still), .hit(hit), .miss(miss),
+	   .graph_still(graph_still), .miss(miss),
 	   .graph_on(graph_on), .graph_rgb(graph_rgb));
 
 	always @(posedge clk)

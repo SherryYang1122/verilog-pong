@@ -5,11 +5,11 @@ module pong_graph(
 		input wire [1:0] btn2,
 		input wire [9:0] pix_x, pix_y,
 		input wire graph_still,
+		output reg miss,
 		output wire graph_on,
-		output reg hit, miss,
 		output reg [2:0] graph_rgb
 	);
-	
+
 	localparam MAX_X = 640;
 	localparam MAX_Y = 480;
 	localparam BALL_SIZE = 8;
@@ -30,7 +30,7 @@ module pong_graph(
 	reg [7:0] ball_data;
 	
 	// all about the output rgb
-	wire bar_right_on, bar_left_on, ball_on;
+	wire bar_on, ball_on;
 	wire [2:0] wall_rgb, bar_rgb, ball_rgb;
 	
 	// colors
@@ -71,7 +71,7 @@ module pong_graph(
 	
 	assign bar_on = ((BAR_LEFT_X <= pix_x) && (pix_x <= BAR_LEFT_X + BAR_WIDTH)
 					 && (bar_right_top <= pix_y) && (pix_y <= bar_right_bottom))
-					 || ((BAR_RIGHT_X <= pix_x) && (pix_x <= BAR_RIGHT_X + BAR_WIDTH)
+					 || ((BAR_RIGHT_X >= pix_x) && (pix_x >= BAR_RIGHT_X - BAR_WIDTH)
 					 && (bar_left_top <= pix_y) && (pix_y <= bar_left_bottom));
 
 	always @*
@@ -89,23 +89,23 @@ module pong_graph(
 	always @(posedge clk, posedge reset)
 	begin
 		if (reset)
-		begin
-			bar_right_y <= 0;
-			bar_left_y <= 0;
-			ball_x <= 0;
-			ball_y <= 0;
-			x_delta <= 10'h004;
-			y_delta <= 10'h004;
-		end   
+			begin
+				bar_right <= 0;
+				bar_left <= 0;
+				ball_x <= 0;
+				ball_y <= 0;
+				x_delta <= 10'h004;
+				y_delta <= 10'h004;
+			end
 		else
-		begin
-			bar_right_y <= bar_right_y_next;
-			bar_left_y <= bar_left_y_next;
-			ball_x <= ball_x_next;
-			ball_y <= ball_y_next;
-			x_delta <= x_delta_next;
-			y_delta <= y_delta_next;
-		end   
+			begin
+				bar_right_y <= bar_right_y_next;
+				bar_left_y <= bar_left_y_next;
+				ball_x <= ball_x_next;
+				ball_y <= ball_y_next;
+				x_delta <= x_delta_next;
+				y_delta <= y_delta_next;
+			end
 	end
 	
 	// calc the position of bar
@@ -132,22 +132,27 @@ module pong_graph(
 
 	always @*
 	begin
-		hit = 1'b0;
 		miss = 1'b0;
 		x_delta_next = x_delta;
 		y_delta_next = y_delta;
 		if (graph_still)
 			begin
-				x_delta_next = 2;
-				y_delta_next = 2;
+				x_delta_next = 4;
+				y_delta_next = 4;
 			end
 		else if (ball_top <= 1)
 			y_delta_next = -y_delta_next;
 		else if (ball_bottom >= MAX_Y - 1)
 			y_delta_next = -y_delta_next;
-		else if (BAR_LEFT_X <= ball_left && BAR_LEFT_X + BAR_WIDTH >= ball_left)
+		else if (BAR_LEFT_X <= ball_left && BAR_LEFT_X + BAR_WIDTH >= ball_left
+				&& bar_left_top <= ball_top && bar_left_bottom >= ball_bottom)
 			begin
-			
+				x_delta_next = -x_delta_next;
+			end
+		else if (BAR_RIGHT_X >= ball_right && BAR_RIGHT_X - BAR_WIDTH <= ball_right
+				&& bar_right_top <= ball_top && bar_right_bottom >= ball_bottom)
+			begin
+				x_delta_next = -x_delta_next;
 			end
 		else if (ball_right >= MAX_X - 10 or ball_right <= 10)
 			miss = 1'b1;
