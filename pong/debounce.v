@@ -5,19 +5,31 @@ module debounce(
 		output reg pbreg
 	);
 
-	reg [7:0] pbshift;
+	reg [2:0] count;
 	wire clk_1ms;
 
 	timer_1ms m0(clk, clk_1ms);
 
 	always @(posedge clk_1ms)
 	begin
-		pbshift = pbshift << 1;
-		pbshift[0] = button;
-		if (pbshift == 0)
+		if(button == 0)
+		begin
 			pbreg = 0;
-		if (pbshift == 8'hFF)
-			pbreg = 1;
+			count = 0;
+		end
+		else
+		begin
+			if(count < 7)
+			begin
+				count = count + 1;
+				pbreg = 0;
+			end
+			else
+			begin
+				count = 7;
+				pbreg = 1;
+			end
+		end
 	end
 
 endmodule
