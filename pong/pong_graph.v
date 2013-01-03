@@ -99,8 +99,8 @@ module pong_graph(
 			end
 		else
 			begin
-				bar_right_y <= bar_right_y_next;
-				bar_left_y <= bar_left_y_next;
+				bar_right <= bar_right_next;
+				bar_left <= bar_left_next;
 				ball_x <= ball_x_next;
 				ball_y <= ball_y_next;
 				x_delta <= x_delta_next;
@@ -154,7 +154,7 @@ module pong_graph(
 			begin
 				x_delta_next = -x_delta_next;
 			end
-		else if (ball_right >= MAX_X - 10 or ball_right <= 10)
+		else if (ball_right >= MAX_X - 10 || ball_right <= 10)
 			miss = 1'b1;
 	end
 
