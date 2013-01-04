@@ -1,9 +1,9 @@
-NET "clk"       	 	LOC="T9";
+NET "clk"          	LOC="T9";
 NET "reset"			LOC="D7";
 NET "btn1[0]"			LOC="L13";
 NET "btn1[1]"			LOC="L14";
-NET "btn2[0]"			LOC="M14";
-NET "btn2[1]"			LOC="M13";
+NET "btn2[0]"			LOC="M13";
+NET "btn2[1]"			LOC="M14";
 NET "vsync" 			LOC="T10";
 NET "hsync"		 	LOC="R9";
 NET "rgb[2]"			LOC="R11";
