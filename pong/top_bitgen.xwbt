@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=C:\Users\lighnt\Documents\GitHub\verilog-pong-game\pong\top.ncd
-OUTFILE=C:\Users\lighnt\Documents\GitHub\verilog-pong-game\pong\top.bit
+INFILE=C:\Users\student\Desktop\verilog-pong-game-master_new\pong\top.ncd
+OUTFILE=C:\Users\student\Desktop\verilog-pong-game-master_new\pong\top.bit
 FAMILY=Spartan3
 PART=xc3s200-4ft256
-WORKINGDIR=C:\Users\lighnt\Documents\GitHub\verilog-pong-game\pong
+WORKINGDIR=C:\Users\student\Desktop\verilog-pong-game-master_new\pong
 LICENSE=WebPack
 USER_INFO=0_0_0

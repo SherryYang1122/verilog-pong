@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2013-01-03T21:02:24</DateModified>
+  <DateModified>2013-01-11T12:04:05</DateModified>
   <ModuleName>top</ModuleName>
-  <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/lighnt/Documents/GitHub/verilog-pong-game/pong/iseconfig/top.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/lighnt/Documents/GitHub/verilog-pong-game/pong\</ImplementationReportsDirectory>
+  <SummaryTimeStamp>2013-01-04T15:10:49</SummaryTimeStamp>
+  <SavedFilePath>C:/Users/student/Desktop/verilog-pong-game-master_new/pong/iseconfig/top.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/student/Desktop/verilog-pong-game-master_new/pong\</ImplementationReportsDirectory>
   <DateInitialized>2013-01-01T12:35:26</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

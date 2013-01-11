@@ -1,7 +1,7 @@
 Release 12.4 - par M.81d (nt)
 Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
 
-Thu Jan 03 23:12:51 2013
+Fri Jan 11 13:20:26 2013
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -208,8 +208,8 @@ Pinout by Pin Number:
 |M10       |           |DIFFS    |IO_L29N_4          |UNUSED   |           |4             |          |         |           |         |         |          |           |                |
 |M11       |           |DIFFS    |IO_L27N_4/DIN/D0   |UNUSED   |           |4             |          |         |           |         |         |          |           |                |
 |M12       |           |         |VCCINT             |         |           |              |          |         |           |         |1.2      |          |           |                |
-|M13       |btn2<1>    |IOB      |IO_L21P_3          |INPUT    |LVCMOS25*  |3             |          |         |           |NONE     |         |LOCATED   |NO         |NONE            |
-|M14       |btn2<0>    |IOB      |IO_L19N_3          |INPUT    |LVCMOS25*  |3             |          |         |           |NONE     |         |LOCATED   |NO         |NONE            |
+|M13       |btn2<0>    |IOB      |IO_L21P_3          |INPUT    |LVCMOS25*  |3             |          |         |           |NONE     |         |LOCATED   |NO         |NONE            |
+|M14       |btn2<1>    |IOB      |IO_L19N_3          |INPUT    |LVCMOS25*  |3             |          |         |           |NONE     |         |LOCATED   |NO         |NONE            |
 |M15       |           |DIFFM    |IO_L20P_3          |UNUSED   |           |3             |          |         |           |         |         |          |           |                |
 |M16       |           |DIFFS    |IO_L20N_3          |UNUSED   |           |3             |          |         |           |         |         |          |           |                |
 |N1        |           |DIFFM    |IO_L17P_6/VREF_6   |UNUSED   |           |6             |          |         |           |         |         |          |           |                |

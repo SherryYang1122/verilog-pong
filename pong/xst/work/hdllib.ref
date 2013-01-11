@@ -1,5 +1,8 @@
-MO vga_sync NULL vga_sync.v vlg62/vga__sync.bin 1357225932
-MO pong_graph NULL pong_graph.v vlg11/pong__graph.bin 1357225932
-MO timer_1ms NULL timer_1ms.v vlg39/timer__1ms.bin 1357225932
-MO debounce NULL debounce.v vlg1D/debounce.bin 1357225932
-MO top NULL top.v vlg6F/top.bin 1357225932
+MO vga_sync NULL vga_sync.v vlg62/vga__sync.bin 1357881591
+MO pong_graph NULL pong_graph.v vlg11/pong__graph.bin 1357881591
+MO text_graph NULL text_graph.v vlg12/text__graph.bin 1357881591
+MO timer_1ms NULL timer_1ms.v vlg39/timer__1ms.bin 1357881591
+MO counter_score NULL counter_score.v vlg4B/counter__score.bin 1357878879
+MO debounce NULL debounce.v vlg1D/debounce.bin 1357881591
+MO top NULL top.v vlg6F/top.bin 1357881591
+MO font_rom NULL front_rom.v vlg6C/font__rom.bin 1357881591
