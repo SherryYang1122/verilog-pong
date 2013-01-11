@@ -19,6 +19,10 @@ module top(
 	reg [2:0] rgb_now, rgb_next;
 	reg graph_still, timer_start;
 	wire [1:0] btn1_out, btn2_out;
+	wire hit_left, hit_right;
+	wire [7:0] left_s, right_s;
+	wire text_on;
+	wire [2:0] text_rgb;
 	
 	initial begin
 		state = 2'b00;
@@ -31,6 +35,11 @@ module top(
 	debounce p2(clk, btn2[0], btn2_out[0]);
 	debounce p3(clk, btn2[1], btn2_out[1]);
 
+	text_graph text
+		(.clk(clk), .left_high(left_s[7:4]), .left_low(left_s[3:0]),
+		.right_high(right_s[7:4]), .right_low(right_s[3:0]), .pix_x(pixel_x),
+		.pix_y(pixel_y), .text_on(text_on), .text_rgb(text_rgb));
+	
 	vga_sync vsync_unit
 		(.clk(clk), .reset(reset), .hsync(hsync), .vsync(vsync),
 		.video_on(video_on), .p_tick(pixel_tick),
@@ -39,8 +48,9 @@ module top(
 	pong_graph graph_unit
 	  (.clk(clk), .reset(reset), .btn1(btn1_out), .btn2(btn2_out),
 	   .pix_x(pixel_x), .pix_y(pixel_y),
-	   .graph_still(graph_still), .miss(miss),
-	   .graph_on(graph_on), .graph_rgb(graph_rgb));
+	   .graph_still(graph_still), .miss(miss),.hit_left(hit_left),.hit_right(hit_right),
+	   .graph_on(graph_on), .graph_rgb(graph_rgb), .left_score(left_s),.right_score(right_s));
+
 
 	always @(posedge clk)
 	begin
@@ -90,9 +100,11 @@ module top(
 		if (~video_on)
 			rgb_next = "000"; // blank the edge/retrace
 		else
-			if (graph_on)  // display graph
-				rgb_next = graph_rgb;
-			else
+			if(graph_on)
+			   rgb_next = graph_rgb;
+			else if (text_on)  // display graph
+				rgb_next = text_rgb;
+			else 
 				rgb_next = 3'b110; // yellow background
 	end
 
