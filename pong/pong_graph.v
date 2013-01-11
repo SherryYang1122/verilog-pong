@@ -18,7 +18,11 @@ module pong_graph(
 	localparam BAR_V = 4;
 	localparam BAR_LEFT_X = 40;
 	localparam BAR_RIGHT_X = 600;
+<<<<<<< HEAD
 	localparam BAR_WIDTH = 6;
+=======
+	localparam BAR_WIDTH = 4;
+>>>>>>> 3c1f9ee9e844aa79985a617e598ad668ee403c60
 	localparam V_X = 3;
 	localparam V_X_N = -3;
 	localparam V_Y = 3;
@@ -139,6 +143,8 @@ module pong_graph(
 
 	always @(posedge refr_tick)
 	begin
+		hit_left = 1'b0;
+		hit_right = 1'b0;
 		miss = 1'b0;
 		x_delta_next = x_delta;
 		y_delta_next = y_delta;
@@ -146,6 +152,7 @@ module pong_graph(
 			begin
 				x_delta_next = V_X;
 				y_delta_next = V_Y;
+<<<<<<< HEAD
 				hit_right = 1'b0;
 				hit_left = 1'b0;
 				miss = 1'b0;
@@ -202,6 +209,24 @@ module pong_graph(
 						right_score[3:0] = right_score[3:0] + 1;
 				end
 				added = 1;
+=======
+			end
+		else if (ball_top <= 1)
+			y_delta_next = V_Y;
+		else if (ball_bottom >= MAX_Y - 1)
+			y_delta_next = V_Y_N;
+		else if (BAR_LEFT_X <= ball_left && BAR_LEFT_X + BAR_WIDTH >= ball_left - 1
+				&& ball_top - bar_right + 36 > 0 && bar_right - ball_top + 36 > 0)
+			begin
+				hit_left = 1'b1;
+				x_delta_next = V_X;
+			end
+		else if (BAR_RIGHT_X >= ball_right && BAR_RIGHT_X - BAR_WIDTH <= ball_right + 1
+				&& ball_top - bar_left + 36 > 0 && bar_left - ball_top + 36 > 0)
+			begin
+				hit_right = 1'b1;
+				x_delta_next = V_X_N;
+>>>>>>> 3c1f9ee9e844aa79985a617e598ad668ee403c60
 			end
 		else if (ball_right >= MAX_X - 10 || ball_right <= 10)
 			begin
