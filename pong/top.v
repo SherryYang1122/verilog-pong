@@ -7,17 +7,19 @@ module top(
 		output wire [2:0] rgb
 	);
 
+
+	// define state
 	localparam  [1:0]
-	new	 = 2'b00,
-	play	= 2'b01,
-	over	= 2'b10;
+	new	 = 2'b00,	// new game
+	play	= 2'b01,	// playing
+	over	= 2'b10;	// game over
 
 	reg [1:0] state, state_next;
 	wire [9:0] pixel_x, pixel_y;
 	wire video_on, pixel_tick, graph_on, miss;
 	wire [2:0] graph_rgb;
 	reg [2:0] rgb_now, rgb_next;
-	reg graph_still, timer_start;
+	reg graph_still, timer_start;			// graph_still: graph still
 	wire [1:0] btn1_out, btn2_out;
 	wire hit_left, hit_right;
 	wire [7:0] left_s, right_s;
@@ -25,12 +27,12 @@ module top(
 	wire [2:0] text_rgb;
 	
 	initial begin
-		state = 2'b00;
+		state = 2'b00;		// state: new
 		rgb_now = 0;
 		graph_still = 1'b1;
 	end
 
-	debounce p0(clk, btn1[0], btn1_out[0]);
+	debounce p0(clk, btn1[0], btn1_out[0]);		// debounce for btns
 	debounce p1(clk, btn1[1], btn1_out[1]);
 	debounce p2(clk, btn2[0], btn2_out[0]);
 	debounce p3(clk, btn2[1], btn2_out[1]);
@@ -83,6 +85,7 @@ module top(
 			play:
 				begin
 					graph_still = 1'b0;
+					// if any ball is missed, your game is over.
 					if (miss)
 					begin
 						state_next = over;
@@ -90,6 +93,7 @@ module top(
 				end
 			over:
 				begin
+					// may add more features here
 					state_next = new;
 				end
 		endcase
@@ -100,6 +104,7 @@ module top(
 		if (~video_on)
 			rgb_next = "000"; // blank the edge/retrace
 		else
+			// the priority is defined here
 			if(graph_on)
 			   rgb_next = graph_rgb;
 			else if (text_on)  // display graph
@@ -108,6 +113,6 @@ module top(
 				rgb_next = 3'b110; // yellow background
 	end
 
-	assign rgb = rgb_now;
+	assign rgb = rgb_now;	// assign rgb register to output
 
 endmodule
