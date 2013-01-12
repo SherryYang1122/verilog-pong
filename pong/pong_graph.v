@@ -11,6 +11,7 @@ module pong_graph(
 		output reg [7:0] left_score, right_score
 	);
 
+	// define constant value here
 	localparam MAX_X = 640;
 	localparam MAX_Y = 480;
 	localparam BALL_SIZE = 8;
@@ -48,12 +49,14 @@ module pong_graph(
 	wire [9:0] bar_right_top, bar_right_bottom;
 	wire [9:0] bar_left_top, bar_left_bottom;
 	
+	// to judge wether added
 	reg added;
 
 	// refr_tick: 1-clock tick asserted at start of v-sync
 	//	   i.e., when the screen is refreshed (60 Hz)
 	assign refr_tick = (pix_y == 481) && (pix_x == 0);
 	
+	// keep refreshing all the assistant values
 	assign ball_right = ball_x + 4;
 	assign ball_left = ball_x - 3;
 	assign ball_top = ball_y - 3;
@@ -81,6 +84,7 @@ module pong_graph(
 					 || ((BAR_RIGHT_X >= pix_x) && (pix_x >= BAR_RIGHT_X - BAR_WIDTH)
 					 && (bar_left_top <= pix_y) && (pix_y <= bar_left_bottom));
 
+	// provide the ball's data
 	always @*
 		case (ball_row)
 			3'h0: ball_data = 8'b00111100;	 //   ****
@@ -93,6 +97,7 @@ module pong_graph(
 			3'h7: ball_data = 8'b00111100;	 //   ****
 		endcase
 	
+	// move ball and deal reset
 	always @(posedge clk, posedge reset)
 	begin
 		if (reset)
@@ -137,6 +142,7 @@ module pong_graph(
 				bar_left_next = bar_left - BAR_V;
 	end
 
+	// deal with the ball's movement
 	always @(posedge refr_tick)
 	begin
 		hit_left = 1'b0;
@@ -217,6 +223,7 @@ module pong_graph(
 			end
 	end
 
+	// assign rgb to the correct color
 	always @* 
 	begin
 		if (bar_on)
@@ -227,6 +234,7 @@ module pong_graph(
 			graph_rgb = 3'b000;
 	end
 
+	// decide wether need to display
 	assign graph_on =  bar_on | ball_on;
 
 endmodule
