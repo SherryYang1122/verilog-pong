@@ -154,7 +154,6 @@ module pong_graph(
 			begin
 				x_delta_next = V_X;
 				y_delta_next = V_Y;
-<<<<<<< HEAD
 				hit_right = 1'b0;
 				hit_left = 1'b0;
 				miss = 1'b0;
